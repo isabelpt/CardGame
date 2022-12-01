@@ -1,3 +1,5 @@
+// Isabel Prado-Tucker
+// Card class
 public class Card {
     // Instance Variables
     private String rank;
