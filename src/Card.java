@@ -38,6 +38,19 @@ public class Card {
         this.point = point;
     }
 
+    // Don't think this is actually necessary
+    public int compare(Card other)
+    {
+        // 0: less than, 1: equal, 2: greater than
+        if (this.point < other.point) {
+            return 0;
+        } else if (this.point == other.point) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
     @Override
     public String toString() {
         return rank + " of " + suit;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0643e6b-ce41-4d44-b466-17d1bd6d696d" name="Changes" comment="created card class, added constructor to deck class">
+    <list default="true" id="f0643e6b-ce41-4d44-b466-17d1bd6d696d" name="Changes" comment="added instructions, built framework for Game class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
@@ -41,7 +41,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Game">
     <configuration name="Deck" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Deck" />
       <module name="War" />
@@ -49,8 +49,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game" />
+      <module name="War" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Game" />
         <item itemvalue="Application.Deck" />
       </list>
     </recent_temporary>
@@ -78,7 +86,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669927090410</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="finished deck, started player">
+      <created>1669931196731</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669931196731</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added instructions, built framework for Game class">
+      <created>1670002886001</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670002886001</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -94,6 +116,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="created card class, added constructor to deck class" />
-    <option name="LAST_COMMIT_MESSAGE" value="created card class, added constructor to deck class" />
+    <MESSAGE value="finished deck, started player" />
+    <MESSAGE value="added instructions, built framework for Game class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added instructions, built framework for Game class" />
   </component>
 </project>

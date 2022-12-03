@@ -39,6 +39,24 @@ public class Player {
         hand.add(newCard);
     }
 
+    public void addCards(ArrayList<Card> newCards) {
+        for (Card c : newCards) {
+            hand.add(c);
+        }
+    }
+    public void tradeCard(Card c, Player other) {
+        hand.remove(hand.indexOf(c));
+        other.addCard(c);
+    }
+
+    public Card getTopCard() {
+        return hand.remove(0);
+    }
+
+    public boolean hasCards() {
+        return hand.isEmpty();
+    }
+
     @Override
     public String toString() {
         return name + " has " + points + " points\n" + name + "'s cards: " + hand;
