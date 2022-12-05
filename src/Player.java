@@ -36,7 +36,7 @@ public class Player {
     }
 
     public void addCard(Card newCard) {
-        hand.add(newCard);
+        hand.add(new Card(newCard.getRank(), newCard.getSuit(), newCard.getPoint()));
     }
 
     public void addCards(ArrayList<Card> newCards) {
@@ -49,12 +49,23 @@ public class Player {
         other.addCard(c);
     }
 
+    public void printHand() {
+        for (int i = 0; i < hand.size(); i++)
+        {
+            System.out.println(hand.get(i).toString());
+        }
+    }
+
+    public int handSize() {
+        return hand.size();
+    }
+
     public Card getTopCard() {
-        return hand.remove(0);
+            return hand.remove(0);
     }
 
     public boolean hasCards() {
-        return hand.isEmpty();
+        return !(hand.isEmpty());
     }
 
     @Override
