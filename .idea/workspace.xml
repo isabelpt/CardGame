@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0643e6b-ce41-4d44-b466-17d1bd6d696d" name="Changes" comment="built out game class, bug: p2 always wins">
+    <list default="true" id="f0643e6b-ce41-4d44-b466-17d1bd6d696d" name="Changes" comment="12/5 class time, added user input">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670040534770</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="12/5 class time, added user input">
+      <created>1670269890208</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670269890208</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -124,6 +131,7 @@
     <MESSAGE value="finished deck, started player" />
     <MESSAGE value="added instructions, built framework for Game class" />
     <MESSAGE value="built out game class, bug: p2 always wins" />
-    <option name="LAST_COMMIT_MESSAGE" value="built out game class, bug: p2 always wins" />
+    <MESSAGE value="12/5 class time, added user input" />
+    <option name="LAST_COMMIT_MESSAGE" value="12/5 class time, added user input" />
   </component>
 </project>

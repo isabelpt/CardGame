@@ -51,6 +51,18 @@ public class Card {
         }
     }
 
+    public void printCard() {
+        String[] clubs = {"      ___      ", "     /   \\     ", "    _\\   /_    ", "   /       \\   ", "   \\__/ \\__/   ", "      |_|      "};
+        System.out.println(" _______________");
+        System.out.println("/               \\");
+        System.out.println("|  " + rank + "            |");
+        for (String line: clubs) {
+            System.out.println("|" + line + "|");
+        }
+        System.out.println("|            " + rank + "  |");
+        System.out.println("\\_______________/");
+    }
+
     @Override
     public String toString() {
         return rank + " of " + suit;

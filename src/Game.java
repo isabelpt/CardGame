@@ -67,6 +67,7 @@ public class Game {
             Card c1 = p1.getTopCard();
             Card c2 = p2.getTopCard();
             System.out.print("1: " + c1.toString() + " | " + "2: " + c2.toString() + "\n");
+            c1.printCard();
 
             // If not same number they both go to one player
             // If same number enter WAR
@@ -108,7 +109,7 @@ public class Game {
     public static void main(String[] args) {
         Player p1 = new Player("Isabel");
         Player p2 = new Player("Joel");
-        String[] r = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
+        String[] r = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"};
         String[] s = {"Hearts", "Clubs", "Spades", "Diamonds"};
         int[] p = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
         Deck d = new Deck(r, s, p);
