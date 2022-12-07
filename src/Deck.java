@@ -37,10 +37,11 @@ public class Deck {
     public Card deal() {
         if (cards.isEmpty()) { return null; }
         cardsLeft--;
-        return cards.get(cardsLeft);
+        return cards.remove(cardsLeft);
 
     }
 
+    // Fisher–Yates shuffle
     public void shuffle() {
         cardsLeft = deckSize;
         for (int i = cardsLeft - 1; i > 0; i--) {
@@ -52,20 +53,18 @@ public class Deck {
     }
 
     public void splitDeck(Player p1, Player p2) {
-        int halfDeck = deckSize / 2;
-        for (int i = 0 ; i < halfDeck; i++) {
-            p1.addCard(cards.get(i));
+        while (cardsLeft != 0) {
+            if (cardsLeft % 2 == 0) {
+                p1.addCard(deal());
+            } else {
+                p2.addCard(deal());
+            }
         }
-        for (int i = halfDeck; i < deckSize; i++) {
-            p2.addCard(cards.get(i));
-        }
-        cardsLeft = 0;
     }
 
     public void printDeck() {
-        for (int i = 0; i < cards.size(); i++)
-        {
-            System.out.println(cards.get(i).toString());
+        for (Card card : cards) {
+            System.out.println(card.toString());
         }
     }
 

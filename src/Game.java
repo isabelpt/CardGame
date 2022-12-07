@@ -1,24 +1,21 @@
+// Isabel Prado-Tucker
+// Game class
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Isabel Prado-Tucker
-// Game class
 public class Game {
     private Player p1;
     private Player p2;
     private Deck deck;
 
+    // Color values from https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\033[0;33m";
     public Game(Player p1, Player p2, Deck deck) {
         this.p1 = p1;
         this.p2 = p2;
         this.deck = deck;
-        // Deal the deck and give to players hand
-//        String[] r = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
-//        String[] s = {"Hearts", "Clubs", "Spades", "Diamonds"};
-//        int[] p = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-//        Deck d = new Deck(r, s, p);
         this.deck.shuffle();
         this.deck.splitDeck(p1, p2);
     }
@@ -63,7 +60,7 @@ public class Game {
             output += " ";
         }
         output += "| " + c2.toString();
-        int spaces2 = 24 - c1.toString().length();
+        int spaces2 = 24 - c2.toString().length();
         for (int i = 0; i < spaces2; i++) {
             output += " ";
         }
@@ -103,6 +100,36 @@ public class Game {
         System.out.println(output);
     }
 
+    public void printWar() {
+        // 'WAR!' ascii text from textkool.com
+        String[] message = {"██     ██  █████  ██████  ██ ",
+                            "██     ██ ██   ██ ██   ██ ██ ",
+                            "██  █  ██ ███████ ██████  ██ ",
+                            "██ ███ ██ ██   ██ ██   ██    ",
+                            " ███ ███  ██   ██ ██   ██ ██ ",
+                            "                             "};
+        System.out.println("|                                                   |");
+        for (int i = 0; i < message.length; i++) {
+            int spaces = (52 - message[i].length()) / 2;
+            System.out.print("|");
+            for (int j = 0; j < spaces; j++) {
+                System.out.print(" ");
+            }
+            if (i % 2 == 0) {
+                System.out.print(ANSI_GREEN);
+            } else {
+                System.out.print(ANSI_YELLOW);
+            }
+            System.out.print(message[i]+ ANSI_RESET);
+            for (int j = 0; j < spaces; j++) {
+                System.out.print(" ");
+            }
+            System.out.println("|");
+        }
+        System.out.println("————————————————————————————————————————————————————-");
+    }
+
+
     public void war(ArrayList<Card> warCards1, ArrayList<Card> warCards2) {
         Card blank = new Card("", "", 0);
         for (int i = 1; i < 5; i++) {
@@ -138,56 +165,46 @@ public class Game {
         while (p1.hasCards() && p2.hasCards()) {
             // Each player deals top card from their hand
             System.out.println("————————————————————————————————————————————————————-");
-            System.out.print("Press enter to get card or 'hand' to view hand sizes: ");
+            System.out.print("Press enter to play, 'hand' for hand sizes, or 'reshuffle': ");
             String input = s.nextLine();
             if (input.equals("hand")) {
                 printHandSizes();
+            } else if (input.equals("reshuffle")) {
+                p1.reshuffle();
+                System.out.println("————————————————————————————————————————————————————-");
+                System.out.println("Your deck is now reshuffled ");
             } else {
-                // System.out.println();
                 Card c1 = p1.getTopCard();
                 Card c2 = p2.getTopCard();
-                // System.out.print("1: " + c1.toString() + " | " + "2: " + c2.toString() + "\n");
-//            c1.printCard();
-//            c2.printCard();
                 int winner;
                 // If not same number they both go to one player
                 // If same number enter WAR
                 if (c1.getPoint() > c2.getPoint()) {
                     p1.addCard(c1);
                     p1.addCard(c2);
-                    winner = 1;
-                    printTwoCards(c1, c2, winner);
-                    //System.out.println("1 greater");
+                    printTwoCards(c1, c2, 1);
                 } else if (c1.getPoint() < c2.getPoint()) {
                     p2.addCard(c1);
                     p2.addCard(c2);
-                    //System.out.println("2 greater");
-                    winner = 2;
-                    printTwoCards(c1, c2, winner);
+                    printTwoCards(c1, c2, 2);
                 } else {
                     printTwoCards(c1, c2, 0);
                     System.out.println("————————————————————————————————————————————————————-");
-                    System.out.println("| War!                                              |");
+                    printWar();
                     System.out.print("Press enter to proceed: ");
                     s.nextLine();
-                    //System.out.println("War - equal");
                     ArrayList<Card> warCardsP1 = new ArrayList<Card>();
                     warCardsP1.add(c1);
                     ArrayList<Card> warCardsP2 = new ArrayList<Card>();
                     warCardsP2.add(c2);
                     war(warCardsP1, warCardsP2);
                 }
-                //System.out.println("1 size: " + p1.handSize() + " | " + "2 size: " + p2.handSize());
                 // Each player deals four more cards
                 // Values of top card compared and one player gets all 10 cards
             }
             }
 
-        // Winner who still has cards is posted (need method to check for empty hand)
-//
-//        p1.printHand();
-//        System.out.println("////////");
-//        p2.printHand();
+        // Winner who still has cards is posted
         if (p1.hasCards())
         {
             System.out.println("P1 wins");
@@ -213,7 +230,7 @@ public class Game {
         String[] r2 = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
         String[] s2 = {"Hearts", "Clubs"};
         int[] points2 = {2, 3, 4, 5, 6, 7, 8, 9, 10};
-        Deck d = new Deck(r2, s2, points2);
+        Deck d = new Deck(r1, s1, points1);
         Game g = new Game(p1, p2, d);
         g.playGame();
     }

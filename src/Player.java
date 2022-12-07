@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-
 // Isabel Prado-Tucker
 // Player class
+import java.util.ArrayList;
+
 public class Player {
     private ArrayList<Card> hand;
     private String name;
@@ -36,7 +36,7 @@ public class Player {
     }
 
     public void addCard(Card newCard) {
-        hand.add(new Card(newCard.getRank(), newCard.getSuit(), newCard.getPoint()));
+        hand.add(newCard);
     }
 
     public void addCards(ArrayList<Card> newCards) {
@@ -55,6 +55,16 @@ public class Player {
             System.out.println(hand.get(i).toString());
         }
     }
+
+    public void reshuffle() {
+        for (int i = handSize() - 1; i > 0; i--) {
+            int index = (int) (Math.random() * i);
+            Card temp = hand.remove(index);
+            hand.add(index, hand.remove(i - 1));
+            hand.add(temp);
+        }
+    }
+
 
     public int handSize() {
         return hand.size();
