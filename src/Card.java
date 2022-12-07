@@ -5,6 +5,16 @@ public class Card {
     private String rank;
     private String suit;
     private int point;
+//    private static final String[][][] asciiRanks = {
+//            {{"   ___"},
+//                    {"  /   \\"},
+//                    {" _\\   /_"},
+//                    {"/       \\"},
+//                    {"\\__/ \\__/"},
+//                    {"   |_|"},
+//                    {""}
+//            }
+//    };
 
     // Constructors
     public Card(String rank, String suit, int point) {
@@ -58,6 +68,7 @@ public class Card {
         System.out.println("|  " + rank + "            |");
         for (String line: clubs) {
             System.out.println("|" + line + "|");
+
         }
         System.out.println("|            " + rank + "  |");
         System.out.println("\\_______________/");

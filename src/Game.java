@@ -67,7 +67,7 @@ public class Game {
             Card c1 = p1.getTopCard();
             Card c2 = p2.getTopCard();
             System.out.print("1: " + c1.toString() + " | " + "2: " + c2.toString() + "\n");
-            c1.printCard();
+            // c1.printCard();
 
             // If not same number they both go to one player
             // If same number enter WAR
@@ -109,10 +109,15 @@ public class Game {
     public static void main(String[] args) {
         Player p1 = new Player("Isabel");
         Player p2 = new Player("Joel");
-        String[] r = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"};
-        String[] s = {"Hearts", "Clubs", "Spades", "Diamonds"};
-        int[] p = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-        Deck d = new Deck(r, s, p);
+        // Full Deck
+        String[] r1 = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"};
+        String[] s1 = {"Hearts", "Clubs", "Spades", "Diamonds"};
+        int[] points1 = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+        // Abridged deck
+        String[] r2 = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        String[] s2 = {"Hearts", "Clubs"};
+        int[] points2 = {2, 3, 4, 5, 6, 7, 8, 9, 10};
+        Deck d = new Deck(r2, s2, points2);
         Game g = new Game(p1, p2, d);
         g.playGame();
     }
