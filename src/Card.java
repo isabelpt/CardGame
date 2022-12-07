@@ -5,6 +5,7 @@ public class Card {
     private String rank;
     private String suit;
     private int point;
+    private String[] asciiArt;
 //    private static final String[][][] asciiRanks = {
 //            {{"   ___"},
 //                    {"  /   \\"},
@@ -21,6 +22,23 @@ public class Card {
         this.rank = rank;
         this.suit = suit;
         this.point = point;
+        if (this.suit.equals("Hearts")) {
+            String[] art = {"  __  __ "," /  \\/  \\"," \\      /","  \\    / ","   \\  /  ","     V   ","         "};
+            asciiArt = art;
+        } else if (this.suit.equals("Clubs")) {
+            String[] art = {"   ___   ", "  /   \\  ", " _\\   /_ ", "/       \\", "\\__/ \\__/", "   |_|   ", "         "};
+            asciiArt = art;
+        } else if (this.suit.equals("Spades")) {
+            String[] art = {"         ","    /\\   ","   /  \\  ","  /    \\ "," (_    _)","   |__|  ","         "};
+            asciiArt = art;
+
+        } else if (this.suit.equals("Diamonds")) {
+            String[] art = {"    ^    ", "  /   \\  ", " /     \\ ", "(       )", " \\     / ", "  \\   /  ", "    V    "};
+            asciiArt = art;
+        } else {
+            String[] art = {"xxxxxxxxx", "xxxxxxxxx", "xxxxxxxxx", "xxxxxxxxx", "xxxxxxxxx", "xxxxxxxxx", "xxxxxxxxx"};
+            asciiArt = art;
+        }
     }
 
     // Methods
@@ -48,6 +66,40 @@ public class Card {
         this.point = point;
     }
 
+    public String[] getAsciiArt() {
+        return asciiArt;
+    }
+
+    public String[] makeCard() {
+        String[] cardArt = new String[12];
+        //System.out.println(" _______________");
+        cardArt[0] =  " _______________";
+        //System.out.println("/               \\");
+        cardArt[1] = "/               \\";
+        if (rank == "10") {
+            //System.out.println("|  " + rank + "           |");
+            cardArt[2] = "|  " + rank + "           |";
+        } else {
+            // System.out.println("|  " + rank + "            |");
+            cardArt[2] = "|  " + rank + "            |";
+        }
+        for (int i = 0; i < asciiArt.length; i++)
+        {
+            //System.out.println("|   " + line + "   |");
+            cardArt[i + 3] = "|   " + asciiArt[i] + "   |";
+        }
+        if (rank == "10") {
+            // System.out.println("|           " + rank + "  |");
+            cardArt[10] = "|           " + rank + "  |";
+        } else {
+            // System.out.println("|            " + rank + "  |");
+            cardArt[10] = "|            " + rank + "  |";
+        }
+        // System.out.println("\\_______________/");
+        cardArt[11] = "\\_______________/";
+        return cardArt;
+    }
+
     // Don't think this is actually necessary
     public int compare(Card other)
     {
@@ -59,19 +111,6 @@ public class Card {
         } else {
             return 2;
         }
-    }
-
-    public void printCard() {
-        String[] clubs = {"      ___      ", "     /   \\     ", "    _\\   /_    ", "   /       \\   ", "   \\__/ \\__/   ", "      |_|      "};
-        System.out.println(" _______________");
-        System.out.println("/               \\");
-        System.out.println("|  " + rank + "            |");
-        for (String line: clubs) {
-            System.out.println("|" + line + "|");
-
-        }
-        System.out.println("|            " + rank + "  |");
-        System.out.println("\\_______________/");
     }
 
     @Override
