@@ -9,9 +9,11 @@ public class Deck {
 
     public Deck(String[] ranks, String[] suits, int[] points) {
         cards = new ArrayList<Card>();
+        // Create cards with all combinations of ranks and suits
         if (ranks.length == points.length) {
             deckSize = suits.length * ranks.length;
             cardsLeft = deckSize;
+            // For each suit, create a card for every rank/point value
             for (String suit : suits) {
                 for (int i = 0; i < points.length; i++)
                 {
@@ -25,7 +27,7 @@ public class Deck {
         }
     }
 
-    // Is it better to make one line functions on a single line or with line breaks
+    // Returns true if no cards in the deck
     public boolean isEmpty() {
         return cardsLeft == 0;
     }
@@ -34,6 +36,7 @@ public class Deck {
         return cardsLeft;
     }
 
+    // Returns card and removes it from the deck
     public Card deal() {
         if (cards.isEmpty()) { return null; }
         cardsLeft--;
@@ -52,6 +55,7 @@ public class Deck {
         }
     }
 
+    // Splits deck equally into each player's hand and removes them from the deck
     public void splitDeck(Player p1, Player p2) {
         while (cardsLeft != 0) {
             if (cardsLeft % 2 == 0) {
@@ -62,6 +66,7 @@ public class Deck {
         }
     }
 
+    // Runs the t0-string method for each card
     public void printDeck() {
         for (Card card : cards) {
             System.out.println(card.toString());

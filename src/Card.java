@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 // Isabel Prado-Tucker
 // Card class
 public class Card {
@@ -91,12 +93,16 @@ public class Card {
         return asciiArt;
     }
 
+    // Build ASCII playing card with rank and suit
     public String[] makeCard() {
         String[] cardArt = new String[12];
         cardArt[0] =  " _______________";
         cardArt[1] = "/               \\";
-        if (rank == "10") {
+        // Print rank, special cases for double-digit rank (10) or blank card
+        if (rank.equals("10")) {
             cardArt[2] = "|  " + rank + "           |";
+        } else if (rank == " ") {
+            cardArt[2] = "|               |";
         } else {
             cardArt[2] = "|  " + rank + "            |";
         }
@@ -104,7 +110,7 @@ public class Card {
         {
             cardArt[i + 3] = "|   " + asciiArt[i] + "   |";
         }
-        if (rank == "10") {
+        if (rank.equals("10")) {
             cardArt[10] = "|           " + rank + "  |";
         } else {
             cardArt[10] = "|            " + rank + "  |";
@@ -115,6 +121,8 @@ public class Card {
 
     @Override
     public String toString() {
-        return rank + " of " + suit;
+        // If blank card, return two spaces (to correctly format printTwoCards
+        // Else, return rank of suit
+        return rank.equals(" ") ? "  " : rank + " of " + suit;
     }
 }

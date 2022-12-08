@@ -20,6 +20,7 @@ public class Game {
         this.deck.splitDeck(p1, p2);
     }
 
+    // Prints instructions for how to play war
     public void printInstructions() {
         System.out.println("Card game: War");
 
@@ -35,11 +36,14 @@ public class Game {
         System.out.println("The game ends when one player has won all the cards.");
     }
 
+    // Prints player names to establish format of the game board
     public void printNames() {
         String output = "————————————————————————————————————————————————————-\n";
+        // Calculate spaces based on 24 total characters
         int spaces1 = 24 - p1.getName().length();
         int spaces2 = 24 - p2.getName().length();
         output += "| " + p1.getName();
+        // Add spaces
         for (int i = 0; i < spaces1; i++) {
             output += " ";
         }
@@ -51,11 +55,14 @@ public class Game {
         System.out.println(output);
     }
 
+    // Print cards from one round, based on makeCard method from Card class
     public void printTwoCards(Card c1, Card c2, int winner) {
         String[][] art = {c1.makeCard(), c2.makeCard()};
         String output = "————————————————————————————————————————————————————-\n";
         output += "| " + c1.toString();
+        // Calculate spaces based on 24 total characters
         int spaces1 = 24 - c1.toString().length();
+        // Add spaces
         for (int i = 0; i < spaces1; i++) {
             output += " ";
         }
@@ -65,6 +72,7 @@ public class Game {
             output += " ";
         }
         output += "|\n";
+        // Based on winner of round, make winning card green
         if (winner == 1) {
             output += "|    " + ANSI_GREEN + art[0][0] + ANSI_RESET + "     |    " + art[1][0] + "     |\n";
             for (int i = 1; i < art[0].length; i++) {
@@ -85,9 +93,12 @@ public class Game {
         System.out.print(output);
     }
 
+    // Print cards left from each player
     public void printHandSizes() {
         String output = "————————————————————————————————————————————————————-\n" + "| " + p1.getName() + ": " + p1.handSize();
+        // Calculate spaces based on 22 total characters
         int spaces = 22 - p1.getName().length() - String.valueOf(p1.handSize()).length();
+        // Add spaces
         for (int i = 0; i < spaces; i++) {
             output += " ";
         }
@@ -100,6 +111,7 @@ public class Game {
         System.out.println(output);
     }
 
+    // Print war ascii text in green and yellow
     public void printWar() {
         // 'WAR!' ascii text from textkool.com
         String[] message = {"██     ██  █████  ██████  ██ ",
@@ -115,6 +127,7 @@ public class Game {
             for (int j = 0; j < spaces; j++) {
                 System.out.print(" ");
             }
+            // Alternate green and yellow colors
             if (i % 2 == 0) {
                 System.out.print(ANSI_GREEN);
             } else {
@@ -129,9 +142,10 @@ public class Game {
         System.out.println("————————————————————————————————————————————————————-");
     }
 
-
+    // Run war, dealing cards from player's hands in sets of four until no longer a tie
     public void war(ArrayList<Card> warCards1, ArrayList<Card> warCards2) {
-        Card blank = new Card("", "", 0);
+        Card blank = new Card(" ", "", 0);
+        // Get four cards from each player, assuming they have cards, and print the blank cards
         for (int i = 1; i < 5; i++) {
             if (p1.hasCards()) {
                 warCards2.add(p1.getTopCard());
@@ -144,6 +158,7 @@ public class Game {
             }
         }
 
+        // Find winner and give all war cards to winner's hand, unless tie in which case start new round of war
         if (warCards1.get(warCards1.size() - 1).getPoint() > warCards2.get(warCards2.size() - 1).getPoint()) {
             p1.addCards(warCards1);
             p1.addCards(warCards2);
@@ -157,6 +172,8 @@ public class Game {
             war(warCards1, warCards2);
         }
     }
+
+    // Play game and return winning player
     public Player playGame() {
         Scanner s = new Scanner(System.in);
         printInstructions();
@@ -176,7 +193,6 @@ public class Game {
             } else {
                 Card c1 = p1.getTopCard();
                 Card c2 = p2.getTopCard();
-                int winner;
                 // If not same number they both go to one player
                 // If same number enter WAR
                 if (c1.getPoint() > c2.getPoint()) {
@@ -188,6 +204,7 @@ public class Game {
                     p2.addCard(c2);
                     printTwoCards(c1, c2, 2);
                 } else {
+                    // Run war
                     printTwoCards(c1, c2, 0);
                     System.out.println("————————————————————————————————————————————————————-");
                     printWar();
@@ -199,18 +216,16 @@ public class Game {
                     warCardsP2.add(c2);
                     war(warCardsP1, warCardsP2);
                 }
-                // Each player deals four more cards
-                // Values of top card compared and one player gets all 10 cards
             }
             }
 
-        // Winner who still has cards is posted
+        // Winner who still has cards is printed and returned
         if (p1.hasCards())
         {
-            System.out.println("P1 wins");
+            System.out.println(p1.getName() + " wins");
             return p1;
         } else {
-            System.out.println("P2 wins");
+            System.out.println(p2.getName() + " wins");
             return p2;
         }
     }
