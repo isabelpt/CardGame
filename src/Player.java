@@ -1,5 +1,6 @@
 // Isabel Prado-Tucker
 // Player class
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Player {
@@ -65,6 +66,9 @@ public class Player {
         }
     }
 
+    public void drawHand(Graphics g, GameViewer window) {
+        hand.get(0).drawCard(g, window);
+    }
 
     public int handSize() {
         return hand.size();

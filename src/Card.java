@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.Objects;
 
 // Isabel Prado-Tucker
@@ -8,12 +10,30 @@ public class Card {
     private String suit;
     private int point;
     private String[] asciiArt;
-
+    private Image imgFront;
+    private Image imgBack;
+    public final int CARD_WIDTH = 100;
+    public final int CARD_HEIGHT = 150;
     // Constructors
     public Card(String rank, String suit, int point) {
         this.rank = rank;
         this.suit = suit;
         this.point = point;
+        int imgIndex;
+        if (suit.equals("Spades")) {
+            imgIndex = (point - 1) * 4 + 1;
+        }
+        else if (suit.equals("Hearts")) {
+            imgIndex = (point - 1) * 4 + 2;;
+        }
+        else if (suit.equals("Diamonds")) {
+            imgIndex = (point - 1) * 4 + 3;;
+        }
+        else {
+            imgIndex = (point - 1) * 4 + 4;;
+        }
+        imgFront = new ImageIcon("Resources/Cards/" + imgIndex + ".png").getImage();
+        imgBack = new ImageIcon("Resources/Cards/back.png").getImage();
         // ASCII card inspiration from https://john.me.tz/thoughts/article.php?topic=deal&offset=3&theme=dark
         if (this.suit.equals("Hearts")) {
             String[] art = {"  __  __ ",
@@ -91,6 +111,10 @@ public class Card {
 
     public String[] getAsciiArt() {
         return asciiArt;
+    }
+
+    public void drawCard(Graphics g, GameViewer window) {
+        g.drawImage(imgFront, 20, 20, CARD_WIDTH, CARD_HEIGHT, window);
     }
 
     // Build ASCII playing card with rank and suit

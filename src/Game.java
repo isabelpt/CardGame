@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
+    private GameViewer window;
     private Player p1;
     private Player p2;
     private Deck deck;
@@ -18,6 +19,16 @@ public class Game {
         this.deck = deck;
         this.deck.shuffle();
         this.deck.splitDeck(p1, p2);
+
+        window = new GameViewer(this);
+    }
+
+    public Player getP1() {
+        return p1;
+    }
+
+    public Player getP2() {
+        return p2;
     }
 
     // Prints instructions for how to play war
@@ -181,6 +192,7 @@ public class Game {
         // Until a player has zero cards
         while (p1.hasCards() && p2.hasCards()) {
             // Each player deals top card from their hand
+            window.repaint();
             System.out.println("————————————————————————————————————————————————————-");
             System.out.print("Press enter to play, 'hand' for hand sizes, or 'reshuffle': ");
             String input = s.nextLine();
@@ -216,7 +228,7 @@ public class Game {
                     warCardsP2.add(c2);
                     war(warCardsP1, warCardsP2);
                 }
-            }
+                }
             }
 
         // Winner who still has cards is printed and returned
@@ -236,7 +248,7 @@ public class Game {
         System.out.print("Name: ");
         String name = s.nextLine();
         Player p1 = new Player(name);
-        Player p2 = new Player("Bot");
+        Player p2 = new Player("Computer");
         // Full Deck
         String[] r1 = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"};
         String[] s1 = {"Hearts", "Clubs", "Spades", "Diamonds"};
