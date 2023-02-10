@@ -12,6 +12,7 @@ public class Card {
     private String[] asciiArt;
     private Image imgFront;
     private Image imgBack;
+    private boolean visible;
     public final int CARD_WIDTH = 100;
     public final int CARD_HEIGHT = 150;
     // Constructors
@@ -19,6 +20,7 @@ public class Card {
         this.rank = rank;
         this.suit = suit;
         this.point = point;
+        visible = false;
         int imgIndex;
         if (suit.equals("Spades")) {
             imgIndex = (point - 1) * 4 + 1;
@@ -113,8 +115,17 @@ public class Card {
         return asciiArt;
     }
 
-    public void drawCard(Graphics g, GameViewer window) {
-        g.drawImage(imgFront, 20, 20, CARD_WIDTH, CARD_HEIGHT, window);
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public void drawCard(Graphics g, GameViewer window, int x, int y, boolean front) {
+        Image img = front ? imgFront : imgBack;
+        g.drawImage(img, x, y, CARD_WIDTH, CARD_HEIGHT, window);
     }
 
     // Build ASCII playing card with rank and suit

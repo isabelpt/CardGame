@@ -159,7 +159,7 @@ public class Game {
         // Get four cards from each player, assuming they have cards, and print the blank cards
         for (int i = 1; i < 5; i++) {
             if (p1.hasCards()) {
-                warCards2.add(p1.getTopCard());
+                warCards1.add(p1.getTopCard());
             }
             if (p2.hasCards()) {
                 warCards2.add(p2.getTopCard());
@@ -167,6 +167,14 @@ public class Game {
             if (i < 4) {
                 printTwoCards(blank, blank, 0);
             }
+        }
+
+        for (Card c : warCards1) {
+            c.setVisible(true);
+        }
+
+        for (Card c : warCards2) {
+            c.setVisible(true);
         }
 
         // Find winner and give all war cards to winner's hand, unless tie in which case start new round of war
@@ -191,8 +199,6 @@ public class Game {
         printNames();
         // Until a player has zero cards
         while (p1.hasCards() && p2.hasCards()) {
-            // Each player deals top card from their hand
-            window.repaint();
             System.out.println("————————————————————————————————————————————————————-");
             System.out.print("Press enter to play, 'hand' for hand sizes, or 'reshuffle': ");
             String input = s.nextLine();
@@ -203,8 +209,11 @@ public class Game {
                 System.out.println("————————————————————————————————————————————————————-");
                 System.out.println("Your deck is now reshuffled ");
             } else {
+                window.repaint();
                 Card c1 = p1.getTopCard();
                 Card c2 = p2.getTopCard();
+                c1.setVisible(true);
+                c2.setVisible(true);
                 // If not same number they both go to one player
                 // If same number enter WAR
                 if (c1.getPoint() > c2.getPoint()) {
@@ -229,6 +238,7 @@ public class Game {
                     war(warCardsP1, warCardsP2);
                 }
                 }
+
             }
 
         // Winner who still has cards is printed and returned

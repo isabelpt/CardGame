@@ -46,5 +46,11 @@ public class GameViewer extends JFrame {
 
         g.drawImage(profileIcons[0], WINDOW_WIDTH / 2 - 25, 70, 50, 50, this);
         g.drawImage(profileIcons[1], WINDOW_WIDTH / 2 - 25, WINDOW_HEIGHT - 100, 50, 50, this);
+
+        backend.getP1().drawHand(g, this, 150);
+        backend.getP2().drawHand(g, this, WINDOW_HEIGHT - 250);
+
+        backend.getP1().drawHandSize(g, this, 630);
+        backend.getP2().drawHandSize(g, this, 200);
     }
 }

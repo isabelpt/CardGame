@@ -66,8 +66,30 @@ public class Player {
         }
     }
 
-    public void drawHand(Graphics g, GameViewer window) {
-        hand.get(0).drawCard(g, window);
+    public void drawHand(Graphics g, GameViewer window, int startY) {
+        //hand.get(0).drawCard(g, window, 20 + hand.get(0).getPoint(), 20);
+
+//        int visibleCounter = 0;
+//        for (Card card : hand) {
+//            if (card.isVisible()) {
+//                visibleCounter++;
+//                card.drawCard(g, window, window.WINDOW_WIDTH/2 + card.getPoint(), 250);
+//            }
+//        }
+        int offset = 0;
+        int x = window.WINDOW_WIDTH / 2 - 50;// - (hand.size() * 2);
+        int y = startY; //- handSize();
+        for (int i = 1; i < hand.size(); i++) {
+            hand.get(i).drawCard(g, window, x, y, false);
+            x += 2;
+            y += 1;
+        }
+    }
+
+    public void drawHandSize(Graphics g, GameViewer window, int y) {
+        g.setColor(Color.white);
+        g.setFont(new Font("Serif", Font.PLAIN, 15));
+        g.drawString("Cards in hand: " + handSize(), 700, y);
     }
 
     public int handSize() {
