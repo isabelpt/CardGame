@@ -202,6 +202,7 @@ public class Game {
             System.out.println("————————————————————————————————————————————————————-");
             System.out.print("Press enter to play, 'hand' for hand sizes, or 'reshuffle': ");
             String input = s.nextLine();
+           // window.repaint();
             if (input.equals("hand")) {
                 printHandSizes();
             } else if (input.equals("reshuffle")) {
@@ -209,7 +210,6 @@ public class Game {
                 System.out.println("————————————————————————————————————————————————————-");
                 System.out.println("Your deck is now reshuffled ");
             } else {
-                window.repaint();
                 Card c1 = p1.getTopCard();
                 Card c2 = p2.getTopCard();
                 c1.setVisible(true);
@@ -218,15 +218,22 @@ public class Game {
                 // If same number enter WAR
                 if (c1.getPoint() > c2.getPoint()) {
                     p1.addCard(c1);
+                    //window.repaint();
                     p1.addCard(c2);
                     printTwoCards(c1, c2, 1);
+                    window.repaint();
                 } else if (c1.getPoint() < c2.getPoint()) {
-                    p2.addCard(c1);
                     p2.addCard(c2);
+                    //window.repaint();
+                    p2.addCard(c1);
                     printTwoCards(c1, c2, 2);
+                    window.repaint();
                 } else {
                     // Run war
+                    // Impliment some kind of sleep thing where it puts 3 face down
+                    // And then does the top one
                     printTwoCards(c1, c2, 0);
+                    window.repaint();
                     System.out.println("————————————————————————————————————————————————————-");
                     printWar();
                     System.out.print("Press enter to proceed: ");
@@ -260,7 +267,7 @@ public class Game {
         Player p1 = new Player(name);
         Player p2 = new Player("Computer");
         // Full Deck
-        String[] r1 = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"};
+        String[] r1 = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
         String[] s1 = {"Hearts", "Clubs", "Spades", "Diamonds"};
         int[] points1 = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
         // Abridged deck

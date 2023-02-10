@@ -7,11 +7,13 @@ public class Player {
     private ArrayList<Card> hand;
     private String name;
     private int points;
+    private Card topCard;
 
     public Player(String name) {
         this.name = name;
         points = 0;
         hand = new ArrayList<Card>();
+        topCard = new Card("", "", 0);
     }
 
     public Player(ArrayList<Card> hand, String name) {
@@ -66,7 +68,7 @@ public class Player {
         }
     }
 
-    public void drawHand(Graphics g, GameViewer window, int startY) {
+    public void drawHand(Graphics g, GameViewer window, int startY, int startX) {
         //hand.get(0).drawCard(g, window, 20 + hand.get(0).getPoint(), 20);
 
 //        int visibleCounter = 0;
@@ -79,11 +81,14 @@ public class Player {
         int offset = 0;
         int x = window.WINDOW_WIDTH / 2 - 50;// - (hand.size() * 2);
         int y = startY; //- handSize();
-        for (int i = 1; i < hand.size(); i++) {
+        for (int i = 0; i < hand.size() - 1; i++) {
             hand.get(i).drawCard(g, window, x, y, false);
             x += 2;
-            y += 1;
+            //y += 1;
         }
+
+        topCard.drawCard(g, window, startX, window.WINDOW_HEIGHT / 2 - 115 / 2 + 10, true);
+       // hand.get(hand.size() - 1).drawCard(g, window, startX, window.WINDOW_HEIGHT / 2 - 115 / 2 + 10, true);
     }
 
     public void drawHandSize(Graphics g, GameViewer window, int y) {
@@ -97,7 +102,8 @@ public class Player {
     }
 
     public Card getTopCard() {
-            return hand.remove(0);
+            topCard = hand.remove(0);
+            return topCard;
     }
 
     // Returns true if player still has cards in hand

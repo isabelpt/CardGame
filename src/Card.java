@@ -13,8 +13,8 @@ public class Card {
     private Image imgFront;
     private Image imgBack;
     private boolean visible;
-    public final int CARD_WIDTH = 100;
-    public final int CARD_HEIGHT = 150;
+    public final int CARD_WIDTH = 75;
+    public final int CARD_HEIGHT = 115;
     // Constructors
     public Card(String rank, String suit, int point) {
         this.rank = rank;
@@ -23,16 +23,40 @@ public class Card {
         visible = false;
         int imgIndex;
         if (suit.equals("Spades")) {
-            imgIndex = (point - 1) * 4 + 1;
+            imgIndex = point == 14 ? 1 : (point - 1) * 4 + 1;
+//            if (point == 14) {
+//                imgIndex = 1;
+//            }
+//            else {
+//                imgIndex = (point - 1) * 4 + 1;
+//            }
         }
         else if (suit.equals("Hearts")) {
-            imgIndex = (point - 1) * 4 + 2;;
+            imgIndex = point == 14 ? 2 : (point - 1) * 4 + 2;
+//            if (point == 14) {
+//                imgIndex = 2;
+//            }
+//            else {
+//                imgIndex = (point - 1) * 4 + 2;
+//            }
         }
         else if (suit.equals("Diamonds")) {
-            imgIndex = (point - 1) * 4 + 3;;
+            imgIndex = point == 14 ? 3 : (point - 1) * 4 + 3;
+//            if (point == 14) {
+//                imgIndex = 3;
+//            }
+//            else {
+//                imgIndex = (point - 1) * 4 + 3;
+//            }
         }
         else {
-            imgIndex = (point - 1) * 4 + 4;;
+            imgIndex = point == 14 ? 4 : (point - 1) * 4 + 4;
+//            if (point == 14) {
+//                imgIndex = 4;
+//            }
+//            else {
+//                imgIndex = (point - 1) * 4 + 4;
+//            }
         }
         imgFront = new ImageIcon("Resources/Cards/" + imgIndex + ".png").getImage();
         imgBack = new ImageIcon("Resources/Cards/back.png").getImage();
