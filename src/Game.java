@@ -8,6 +8,13 @@ public class Game {
     private Player p1;
     private Player p2;
     private Deck deck;
+    /** Game statuses to determine window views **/
+    public int gameStatus;
+    public final int START_GAME = 0;
+    public final int HAND_SIZES = 1;
+    public final int REG_GAME = 2;
+    public final int WAR_GAME = 3;
+    public final int END_GAME = 4;
 
     // Color values from https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     public static final String ANSI_RESET = "\u001B[0m";
@@ -20,6 +27,8 @@ public class Game {
         this.deck.shuffle();
         this.deck.splitDeck(p1, p2);
 
+        gameStatus = START_GAME;
+
         window = new GameViewer(this);
     }
 
@@ -31,6 +40,9 @@ public class Game {
         return p2;
     }
 
+    public boolean isWar() {
+        return p1.getHand().get(0).getPoint() == p2.getHand().get(0).getPoint() ? true : false;
+    }
     // Prints instructions for how to play war
     public void printInstructions() {
         System.out.println("Card game: War");
@@ -194,6 +206,7 @@ public class Game {
 
     // Play game and return winning player
     public Player playGame() {
+        window.repaint();
         Scanner s = new Scanner(System.in);
         printInstructions();
         printNames();
@@ -204,36 +217,36 @@ public class Game {
             String input = s.nextLine();
            // window.repaint();
             if (input.equals("hand")) {
+                gameStatus = HAND_SIZES;
+                window.repaint();
                 printHandSizes();
             } else if (input.equals("reshuffle")) {
                 p1.reshuffle();
                 System.out.println("————————————————————————————————————————————————————-");
                 System.out.println("Your deck is now reshuffled ");
             } else {
+                gameStatus = REG_GAME;
                 Card c1 = p1.getTopCard();
                 Card c2 = p2.getTopCard();
                 c1.setVisible(true);
                 c2.setVisible(true);
+                window.repaint();
                 // If not same number they both go to one player
                 // If same number enter WAR
                 if (c1.getPoint() > c2.getPoint()) {
                     p1.addCard(c1);
-                    //window.repaint();
                     p1.addCard(c2);
                     printTwoCards(c1, c2, 1);
-                    window.repaint();
                 } else if (c1.getPoint() < c2.getPoint()) {
                     p2.addCard(c2);
-                    //window.repaint();
                     p2.addCard(c1);
                     printTwoCards(c1, c2, 2);
-                    window.repaint();
                 } else {
                     // Run war
                     // Impliment some kind of sleep thing where it puts 3 face down
                     // And then does the top one
+                    gameStatus = WAR_GAME;
                     printTwoCards(c1, c2, 0);
-                    window.repaint();
                     System.out.println("————————————————————————————————————————————————————-");
                     printWar();
                     System.out.print("Press enter to proceed: ");
@@ -243,11 +256,13 @@ public class Game {
                     ArrayList<Card> warCardsP2 = new ArrayList<Card>();
                     warCardsP2.add(c2);
                     war(warCardsP1, warCardsP2);
+                    window.repaint();
                 }
                 }
 
             }
 
+        gameStatus = END_GAME;
         // Winner who still has cards is printed and returned
         if (p1.hasCards())
         {

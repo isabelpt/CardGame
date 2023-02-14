@@ -24,42 +24,19 @@ public class Card {
         int imgIndex;
         if (suit.equals("Spades")) {
             imgIndex = point == 14 ? 1 : (point - 1) * 4 + 1;
-//            if (point == 14) {
-//                imgIndex = 1;
-//            }
-//            else {
-//                imgIndex = (point - 1) * 4 + 1;
-//            }
         }
         else if (suit.equals("Hearts")) {
             imgIndex = point == 14 ? 2 : (point - 1) * 4 + 2;
-//            if (point == 14) {
-//                imgIndex = 2;
-//            }
-//            else {
-//                imgIndex = (point - 1) * 4 + 2;
-//            }
         }
         else if (suit.equals("Diamonds")) {
             imgIndex = point == 14 ? 3 : (point - 1) * 4 + 3;
-//            if (point == 14) {
-//                imgIndex = 3;
-//            }
-//            else {
-//                imgIndex = (point - 1) * 4 + 3;
-//            }
         }
         else {
             imgIndex = point == 14 ? 4 : (point - 1) * 4 + 4;
-//            if (point == 14) {
-//                imgIndex = 4;
-//            }
-//            else {
-//                imgIndex = (point - 1) * 4 + 4;
-//            }
         }
         imgFront = new ImageIcon("Resources/Cards/" + imgIndex + ".png").getImage();
         imgBack = new ImageIcon("Resources/Cards/back.png").getImage();
+
         // ASCII card inspiration from https://john.me.tz/thoughts/article.php?topic=deal&offset=3&theme=dark
         if (this.suit.equals("Hearts")) {
             String[] art = {"  __  __ ",

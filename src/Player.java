@@ -7,6 +7,7 @@ public class Player {
     private ArrayList<Card> hand;
     private String name;
     private int points;
+    /** Top card being displayed **/
     private Card topCard;
 
     public Player(String name) {
@@ -33,6 +34,7 @@ public class Player {
     public int getPoints() {
         return points;
     }
+
 
     public void addPoints(int points) {
         this.points += points;
@@ -68,29 +70,30 @@ public class Player {
         }
     }
 
+    /**
+     * Draws player's hand.
+     * Shows stack of card belonging to player and the top card being compared.
+     * @param g
+     * @param window
+     * @param startY y-value for cards in deck
+     * @param startX x-value for top card being displayed
+     */
     public void drawHand(Graphics g, GameViewer window, int startY, int startX) {
-        //hand.get(0).drawCard(g, window, 20 + hand.get(0).getPoint(), 20);
-
-//        int visibleCounter = 0;
-//        for (Card card : hand) {
-//            if (card.isVisible()) {
-//                visibleCounter++;
-//                card.drawCard(g, window, window.WINDOW_WIDTH/2 + card.getPoint(), 250);
-//            }
-//        }
-        int offset = 0;
-        int x = window.WINDOW_WIDTH / 2 - 50;// - (hand.size() * 2);
-        int y = startY; //- handSize();
+        int x = window.WINDOW_WIDTH / 2 - 50;
+        int y = startY;
         for (int i = 0; i < hand.size() - 1; i++) {
             hand.get(i).drawCard(g, window, x, y, false);
             x += 2;
-            //y += 1;
         }
-
         topCard.drawCard(g, window, startX, window.WINDOW_HEIGHT / 2 - 115 / 2 + 10, true);
-       // hand.get(hand.size() - 1).drawCard(g, window, startX, window.WINDOW_HEIGHT / 2 - 115 / 2 + 10, true);
     }
 
+    /**
+     * Draw the number of cards a player has to the window
+     * @param g
+     * @param window
+     * @param y top-left y-value for displaying card #
+     */
     public void drawHandSize(Graphics g, GameViewer window, int y) {
         g.setColor(Color.white);
         g.setFont(new Font("Serif", Font.PLAIN, 15));
